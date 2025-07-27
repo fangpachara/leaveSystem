@@ -11,11 +11,11 @@ public class LeaveBalance {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private Users user_id;
+    private Users userId;
 
     @ManyToOne
     @JoinColumn(name="leave_id")
-    private LeaveType leaveType_id;
+    private LeaveType leaveTypeId;
 
     @Column(name="year")
     private int year;
@@ -30,20 +30,20 @@ public class LeaveBalance {
         Id = id;
     }
 
-    public Users getUser_id() {
-        return user_id;
+    public Users getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Users user_id) {
-        this.user_id = user_id;
+    public void setUserId(Users userId) {
+        this.userId = userId;
     }
 
-    public LeaveType getLeaveType_id() {
-        return leaveType_id;
+    public LeaveType getLeaveTypeId() {
+        return leaveTypeId;
     }
 
-    public void setLeaveType_id(LeaveType leaveType_id) {
-        this.leaveType_id = leaveType_id;
+    public void setLeaveTypeId(LeaveType leaveTypeId) {
+        this.leaveTypeId = leaveTypeId;
     }
 
     public int getYear() {
