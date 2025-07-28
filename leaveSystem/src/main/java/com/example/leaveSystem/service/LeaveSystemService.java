@@ -24,8 +24,8 @@ public class LeaveSystemService {
     }
 
     public LeaveRequestModel createRequest(LeaveRequestModel model){
-        Users user = UserRepository.findById(model.getUserId());
-        LeaveType leaveType = LeaveTypeRepository.findByid(model.getLeaveTypeId());
+        Users user = UserRepository.findById(model.getUserId()).orElseThrow(new RuntimeException("Not Found"));
+        LeaveType leaveType = LeaveTypeRepository.findById(model.getLeaveTypeId()).orElseThrow(new RuntimeException("Not Found"));
 
         //เอาข้อมูลลง entity
         LeaveRequest leaveRequest = new LeaveRequest();
@@ -42,4 +42,6 @@ public class LeaveSystemService {
 
         return ResponseEntity.ok(model);
     }
+
+    public
 }
