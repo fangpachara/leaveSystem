@@ -1,0 +1,37 @@
+<div>
+    <div class="row col-md-12">
+        <i class="bi bi-calendar-fill text-primary"></i>
+        <h3>แบบฟอร์มขอลางาน</h3>
+    </div>
+    <mat-card>
+        <p>ประเภทการลา</p>
+        <mat-form-field appearance="fill">
+            <mat-label>เลือกประเภทลา</mat-label>
+            <mat-select [(ngModel)]="formData.leaveType">
+                <mat-option *ngFor="let type of leaveType" [value]="type.id">
+                    {{ type.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>วันที่เริ่มต้น</mat-label>
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="formData.startDate" placeholder="mm/dd/yyyy">
+            <mat-datepicker #datepicker />
+            <mat-datepicker-toggle [for]="datepicker" matSuffix />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>วันที่สิ้นสุด</mat-label>
+            <input matInput [matDatepicker]="datepicker" [(ngModel)]="formData.endDate" placeholder="mm/dd/yyyy">
+            <mat-datepicker #datepicker />
+            <mat-datepicker-toggle [for]="datepicker" matSuffix />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>เหตุผลการลา</mat-label>
+            <textarea matInput [(ngModel)]="formData.reason"></textarea>
+        </mat-form-field>
+
+        <button > </button>
+    </mat-card>
+</div>
