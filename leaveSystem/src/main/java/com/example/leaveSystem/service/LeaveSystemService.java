@@ -11,14 +11,10 @@ import com.example.leaveSystem.repository.LeaveRequestRepository;
 import com.example.leaveSystem.repository.LeaveTypeRepository;
 import com.example.leaveSystem.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class LeaveSystemService {
