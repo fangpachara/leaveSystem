@@ -6,6 +6,8 @@ public class LeaveBalanceModel {
     private int leaveTypeId;
     private int year;
     private int remainingDays;
+    private int totalLeaveDays;
+    private int usedDays;
 
     public int getId() {
         return Id;
@@ -45,5 +47,21 @@ public class LeaveBalanceModel {
 
     public void setRemainingDays(int remainingDays) {
         this.remainingDays = remainingDays;
+    }
+
+    public int getTotalLeaveDays() {
+        return totalLeaveDays;
+    }
+
+    public void setTotalLeaveDays(int totalLeaveDays) {
+        this.totalLeaveDays = totalLeaveDays;
+    }
+
+    public int getUsedDays() {
+        return usedDays;
+    }
+
+    public void setUsedDays(int usedDays) {
+        this.usedDays = usedDays;
     }
 }

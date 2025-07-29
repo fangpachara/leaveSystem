@@ -14,12 +14,12 @@ public class LeaveBalance {
     private Users userId;
 
     @ManyToOne
-    @JoinColumn(name="leave_id")
+    @JoinColumn(name="leave_type_id")
     private LeaveType leaveTypeId;
 
     @Column(name="year")
     private int year;
-    @Column(name="remain_days")
+    @Column(name="remaining_days")
     private int remainingDays;
 
     public int getId() {

@@ -1,5 +1,6 @@
 package com.example.leaveSystem.controller;
 
+import com.example.leaveSystem.dto.LeaveBalanceModel;
 import com.example.leaveSystem.dto.LeaveRequestModel;
 import com.example.leaveSystem.service.LeaveAllService;
 import com.example.leaveSystem.service.LeaveSystemService;
@@ -29,5 +30,14 @@ public class LeaveSystemController {
         return leaveAllService.getAllRequest();
     }
 
-    @PutMapping("/PutRequest")
+    @PutMapping("/PutRequest/{Id}")
+    public ResponseEntity<LeaveRequestModel> updateStatus(@PathVariable int Id,
+                                                          @RequestParam String status){
+        return ResponseEntity.ok(leaveSystemService.updateStatus(Id, status));
+    }
+
+    @GetMapping("/GetBalances")
+    public ResponseEntity<List<LeaveBalanceModel>> calRemainDays(){
+        return ResponseEntity.ok(leaveSystemService.calRemainingDays());
+    }
 }
