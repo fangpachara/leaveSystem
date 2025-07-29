@@ -20,7 +20,6 @@ export class LeaveHistoryComponent {
     this.http.get('http://localhost:8080/getAll')
     .subscribe({
       next: (response) => {
-          console.log("Save Suscess", response)
           this.leaveHistory = response
         }
     })

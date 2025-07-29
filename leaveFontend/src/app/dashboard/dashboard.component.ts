@@ -4,10 +4,12 @@ import { Component } from '@angular/core';
 
 interface list{
   id: number;
-  LeaveTypeName: string;
-  RemainingDays: number;
-  TotalRemaining: number;
-  UsedDays: number;
+  leaveTypeName: string;
+  leaveTypeId: number;
+  remainingDays: number;
+  totalRemaining: number;
+  totalLeaveDays: number;
+  usedDays: number;
   startDate: string;
   endDate: string;
   status: string;
@@ -39,11 +41,11 @@ export class DashboardComponent {
   getLeaveHistory(){
     this.http.get<list[]>('http://localhost:8080/getAll')
     .subscribe({
-      next: (response) => {
-          console.log("Save Suscess", response)
-          this.leaveHistory = response.sort((b, a)=> a.id - b.id); //เรียงจากล่าสุด
+      next: (data) => {
+          this.leaveHistory = data.sort((b, a)=> a.id - b.id); //เรียงจากล่าสุด
           //นับ PENDING
           this.pendingCount = this.leaveHistory.filter((item:any) => item.status === "PENDING").length;
+          console.log(data)
         }
     })
   }
@@ -51,7 +53,6 @@ export class DashboardComponent {
     this.http.get<list[]>('http://localhost:8080/GetBalances')
     .subscribe({
       next: (response) => {
-          console.log("Save Suscess", response)
           this.leaveList = response
         }
     })
