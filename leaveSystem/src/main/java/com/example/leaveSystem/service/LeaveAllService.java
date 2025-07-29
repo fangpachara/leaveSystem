@@ -34,8 +34,14 @@ public class LeaveAllService {
             model.setStatus(user.getStatus());
             model.setLeaveTypeName(user.getLeaveTypeId().getName());
 
-            int leaveDay = (int) ChronoUnit.DAYS.between(model.getStartDate(), model.getEndDate()) +1;
-            model.setUsedDays(leaveDay);
+            if (user.getStartDate() != null && user.getEndDate() != null){
+                int leaveDay = (int) ChronoUnit.DAYS.between(model.getStartDate(), model.getEndDate()) +1;
+                model.setUsedDays(leaveDay);
+            }else{
+                model.setUsedDays(0);
+            }
+
+
 
             models.add(model);
         }

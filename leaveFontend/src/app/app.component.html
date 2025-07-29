@@ -5,16 +5,20 @@
 </div>
 
 <div class="container">
-  <mat-tab-group>
-    <mat-tab label="แดชบอร์ด">
-      <app-dashboard></app-dashboard>
-    </mat-tab>
-    <mat-tab label="ขอลางาน">
-      <app-leave-request-form></app-leave-request-form>
-    </mat-tab>
-    <mat-tab label="ประวัติการลา">
-      <app-leave-history></app-leave-history>
-    </mat-tab>
-  </mat-tab-group>
+  <div *ngIf="changePage == 0">
+    <mat-tab-group>
+      <mat-tab label="แดชบอร์ด">
+        <app-dashboard (toSubmitPage)="toSubmit()"></app-dashboard>
+      </mat-tab>
+      <mat-tab label="ขอลางาน">
+        <app-leave-request-form></app-leave-request-form>
+      </mat-tab>
+      <mat-tab label="ประวัติการลา">
+        <app-leave-history></app-leave-history>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div *ngIf="changePage == 1">
+    <app-submit-approved (toMain)="toDashboard()"></app-submit-approved>
+  </div>
 </div>
-

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 
 interface list {
   id: number;
@@ -26,6 +26,8 @@ interface list {
 })
 
 export class DashboardComponent {
+
+  @Output() toSubmitPage = new EventEmitter<void>();
 
 
   constructor(private http: HttpClient) { }
@@ -60,6 +62,10 @@ export class DashboardComponent {
           this.totalRemaining = response[0]?.totalRemaining || 0;
         }
       })
+  }
+
+  toSubmit(){
+    this.toSubmitPage.emit();
   }
 
 }

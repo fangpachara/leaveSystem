@@ -3,9 +3,9 @@ import { RouterOutlet } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LeaveBalanceDisplayComponent } from './leave-balance-display/leave-balance-display.component';
 import { LeaveHistoryComponent } from './leave-history/leave-history.component';
 import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
+import { SubmitApprovedComponent } from './submit-approved/submit-approved.component';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +14,22 @@ import { LeaveRequestFormComponent } from './leave-request-form/leave-request-fo
     MatTabsModule,
     CommonModule,
     DashboardComponent,
-    LeaveBalanceDisplayComponent,
     LeaveHistoryComponent,
-    LeaveRequestFormComponent
+    LeaveRequestFormComponent,
+    SubmitApprovedComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  changePage = 0;
+
+  toSubmit(){
+    this.changePage = 1;
+  }
+
+  toDashboard(){
+    this.changePage = 0;
+  }
   title = 'leaveFontend';
 }

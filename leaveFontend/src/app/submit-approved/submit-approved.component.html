@@ -1,0 +1,55 @@
+<div>
+    <button class="btn btn-danger mb-4" (click)="back()">Back</button>
+    <div>
+        <h3>รายการขออนุมัติการลา</h3>
+        <p>รายการที่รออนุมัติทั้งหมด {{ approveList.length }} รายการ</p>
+    </div>
+    <div>
+        <div class="card-body p-3 mb-3 shadow" *ngFor="let list of approveList">
+            <div class="p-3 d-flex align-items-center">
+                <div class="mt-2">
+                    <p class="fs-4 fw-bold">พชร ทีฆาวงค์</p>
+                    <small class="fs-5 text-muted">CEO</small>
+                </div>
+                <div class="mt-4 d-flex gap-4 justify-content-end">
+                    <p class="badge bg-warning text-dark">{{ list.status }}</p>
+                </div>
+            </div>
+            <hr />
+            <div class="row p-3">
+                <div class="col-md-6">
+                    <small class="text-muted">ประเภทการลา</small><br>
+                    <small class="fs-5">{{ list.leaveTypeName }}</small>
+                </div>
+                <div class="col-md-6">
+                    <small class="text-muted">จำนวนวันลา</small><br>
+                    <small class="fs-5">{{ list.usedDays }} วัน</small>
+                </div>
+                <div class="col-md-6 mt-4">
+                    <small class="text-muted">วันที่เริ่มต้น</small><br>
+                    <small class="fs-5">{{ list.startDate }}</small>
+                </div>
+                <div class="col-md-6 mt-4">
+                    <small class="text-muted">วันที่สิ้นสุด</small><br>
+                    <small class="fs-5">{{ list.endDate }}</small>
+                </div>
+                <div class="col-md-6 mt-4">
+                    <small class="text-muted">เหตุผลการลา</small><br>
+                    <small class="fs-5">{{ list.reason }}</small>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <i class="bi bi-chat-dots"></i>
+                    <small class="text-muted"> ความคิดเห็น</small><br>
+                    <textarea class="form-control mt-2" placeholder="เพิ่มความคิดเห็น (ถ้ามี)"></textarea>
+                </div>
+                <div class="col-md-12 mt-4 d-flex gap-4 justify-content-end">
+                    <button class="btn btn-danger" (click)='approved("NOTAPPROVED",list.id)'> ✕ ไม่อนุมัติ </button>
+                    <button class="btn btn-success" (click)='approved("APPROVED",list.id)'> ✓ อนุมัติ </button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

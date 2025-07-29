@@ -61,7 +61,7 @@ public class LeaveSystemService {
         leaveRequest.setStatus(status.toUpperCase());
         LeaveRequest request = leaveRequestRepository.save(leaveRequest);
 
-        if(status.equals("NOT APPROVED")){
+        if(status.equals("NOTAPPROVED")){
             leaveRequestRepository.delete(leaveRequest);
         }
         LeaveRequestModel model = new LeaveRequestModel();

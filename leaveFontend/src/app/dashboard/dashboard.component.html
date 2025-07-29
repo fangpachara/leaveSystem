@@ -6,16 +6,12 @@
                 <small>วันลาคงเหลือ</small>
                 <p class="fs-4 fw-bold">{{ totalRemaining }} วัน</p>
             </div>
-            <div>
-            </div>
         </div>
         <div class="boxleave p-3 d-flex align-items-center gap-4 shadow">
             <i class="bi bi-clock text-success fs-2"></i>
-            <div class="mt-4">
+            <div class="mt-4" >
                 <small>ลาที่รออนุมัติ</small>
-                <p class="fs-4 fw-bold">{{ pendingCount }} รายการ</p>
-            </div>
-            <div>
+                <p (click)="toSubmit()" style="cursor: pointer;" class="fs-4 fw-bold text-decoration-underline">{{ pendingCount }} รายการ</p>
             </div>
         </div>
         <div class="boxleave p-3 d-flex align-items-center gap-4 shadow">
@@ -23,8 +19,6 @@
             <div class="mt-4">
                 <small>ลาทั้งหมดปีนี้</small>
                 <p class="fs-4 fw-bold">{{ totalLeaveDays }} วัน</p>
-            </div>
-            <div>
             </div>
         </div>
     </div>

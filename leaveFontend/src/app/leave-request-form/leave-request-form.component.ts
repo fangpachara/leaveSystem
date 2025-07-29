@@ -25,14 +25,10 @@ export class LeaveRequestFormComponent {
     { id: 2, name: "ลากิจ" }
   ]
 
-  userId = [
-    { id: 1, name: "พชร ทีฆาวงค์"},
-    { id: 2, name: "แมลง วัน"},
-  ]
 
   formData = {
     leaveTypeId: '',
-    userId: '',
+    userId: 1,
     startDate: '',
     endDate: '',
     status: 'PENDING',
@@ -59,7 +55,7 @@ export class LeaveRequestFormComponent {
   }
 
   onSubmit() {
-    if (this.formData.leaveTypeId || this.formData.userId || this.formData.startDate || this.formData.endDate || this.formData.reason) {
+    if (this.formData.leaveTypeId && this.formData.startDate && this.formData.endDate && this.formData.reason) {
       this.calLeaveDate()
       console.log("submitted", this.formData)
       this.http.post('http://localhost:8080/crate-request', this.formData)
@@ -75,7 +71,7 @@ export class LeaveRequestFormComponent {
   onClear() {
     this.formData = {
       leaveTypeId: '',
-      userId: '',
+      userId: 1,
       startDate: '',
       endDate: '',
       status: 'รออนุมัติ',
