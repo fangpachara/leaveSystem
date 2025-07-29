@@ -7,7 +7,6 @@ import com.example.leaveSystem.entity.Users;
 import com.example.leaveSystem.repository.LeaveRequestRepository;
 import com.example.leaveSystem.repository.LeaveTypeRepository;
 import com.example.leaveSystem.repository.UserRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,8 +23,11 @@ public class LeaveSystemService {
     }
 
     public LeaveRequestModel createRequest(LeaveRequestModel model){
-        Users user = UserRepository.findById(model.getUserId()).orElseThrow(new RuntimeException("Not Found"));
-        LeaveType leaveType = LeaveTypeRepository.findById(model.getLeaveTypeId()).orElseThrow(new RuntimeException("Not Found"));
+        Users user = new Users();
+        user.setId(model.getUserId());
+
+        LeaveType leaveType = new LeaveType();
+        leaveType.setId(model.getLeaveTypeId());
 
         //เอาข้อมูลลง entity
         LeaveRequest leaveRequest = new LeaveRequest();
@@ -34,14 +36,13 @@ public class LeaveSystemService {
         leaveRequest.setStartDate(model.getStartDate());
         leaveRequest.setEndDate(model.getEndDate());
         leaveRequest.setReason(model.getReason());
-        leaveRequest.setStatus("Pending");
+        leaveRequest.setStatus("รออนุมัติ");
 
         LeaveRequest saved = leaveRequestRepository.save(leaveRequest);
         model.setId(saved.getId());
         model.setStatus(saved.getStatus());
 
-        return ResponseEntity.ok(model);
+        return model;
     }
 
-    public
 }

@@ -1,12 +1,10 @@
 package com.example.leaveSystem.controller;
 
 import com.example.leaveSystem.dto.LeaveRequestModel;
+import com.example.leaveSystem.service.LeaveAllService;
 import com.example.leaveSystem.service.LeaveSystemService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,19 +12,22 @@ import java.util.List;
 public class LeaveSystemController {
 
     private final LeaveSystemService leaveSystemService;
+    private final LeaveAllService leaveAllService;
 
-    public LeaveSystemController(LeaveSystemService leaveSystemService){
+    public LeaveSystemController(LeaveSystemService leaveSystemService, LeaveAllService leaveAllService){
         this.leaveSystemService = leaveSystemService;
+        this.leaveAllService = leaveAllService;
     }
 
-    @PostMapping("/api/leave-requests/crateRequest")
+    @PostMapping("/crateRequest")
     public ResponseEntity<LeaveRequestModel> createRequest(@RequestBody LeaveRequestModel model){
-        return leaveSystemService.createRequest(model);
+        return ResponseEntity.ok(leaveSystemService.createRequest(model));
     }
 
-    @GetMapping("/api/leave-requests/getAll")
+    @GetMapping("/getAll")
     public List<LeaveRequestModel> getAllRequest(){
-        return leaveSystemService.getAllRequest();
+        return leaveAllService.getAllRequest();
     }
 
+    @PutMapping("/PutRequest")
 }
