@@ -61,6 +61,9 @@ public class LeaveSystemService {
         leaveRequest.setStatus(status.toUpperCase());
         LeaveRequest request = leaveRequestRepository.save(leaveRequest);
 
+        if(status.equals("NOT APPROVED")){
+            leaveRequestRepository.delete(leaveRequest);
+        }
         LeaveRequestModel model = new LeaveRequestModel();
         model.setId(request.getId());
         model.setUserId(request.getUserId().getId());
@@ -69,6 +72,7 @@ public class LeaveSystemService {
         model.setEndDate(request.getEndDate());
         model.setReason(request.getReason());
         model.setStatus(request.getStatus());
+
 
         return model;
     }
