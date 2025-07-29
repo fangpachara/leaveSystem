@@ -1,1 +1,24 @@
-<p>leave-history works!</p>
+<div class="container">
+    <table class="table table-bordered align-center">
+        <thead>
+            <tr class="text-center">
+                <th>วันที่</th>
+                <th>ประเภท</th>
+                <th>จำนวนวันลา</th>
+                <th>สถานะ</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor = "let data of leaveHistory">
+                <td>{{ data.date }}</td>
+                <td>{{ data.type }}</td>
+                <td>{{ data.day }} วัน</td>
+                <td><span class="badge" [ngClass] = "{
+                    'bg-success': data.status === 'อนุมัติ',
+                    'bg-danger': data.status === 'รออนุมัติ'
+                }">{{ data.status }}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
