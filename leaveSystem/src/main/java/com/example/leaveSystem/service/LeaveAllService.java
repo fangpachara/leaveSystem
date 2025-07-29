@@ -5,6 +5,7 @@ import com.example.leaveSystem.entity.LeaveRequest;
 import com.example.leaveSystem.repository.LeaveRequestRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +22,20 @@ public class LeaveAllService {
         List<LeaveRequest> users = leaveRequestRepository.findAll();
         List<LeaveRequestModel> models = new ArrayList<>();
 
+
         for (LeaveRequest user : users) {
             LeaveRequestModel model = new LeaveRequestModel();
             model.setId(user.getId());
-            model.setUserId(user.getId());
+            model.setUserId(user.getUserId().getId());
             model.setLeaveTypeId(user.getLeaveTypeId().getId());
             model.setStartDate(user.getStartDate());
             model.setEndDate(user.getEndDate());
             model.setReason(user.getReason());
             model.setStatus(user.getStatus());
+            model.setLeaveTypeName(user.getLeaveTypeId().getName());
+
+            int leaveDay = (int) ChronoUnit.DAYS.between(model.getStartDate(), model.getEndDate()) +1;
+            model.setUsedDays(leaveDay);
 
             models.add(model);
         }

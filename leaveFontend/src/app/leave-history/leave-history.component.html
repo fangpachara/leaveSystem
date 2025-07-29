@@ -10,12 +10,12 @@
         </thead>
         <tbody class="text-center">
             <tr *ngFor = "let data of leaveHistory">
-                <td>{{ data.date }}</td>
-                <td>{{ data.type }}</td>
-                <td>{{ data.day }} วัน</td>
+                <td>{{ data.startDate | date: 'dd/MM/yyyy' }} - {{ data.endDate | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ data.leaveTypeName }}</td>
+                <td>{{ data.usedDays }} วัน</td>
                 <td><span class="badge" [ngClass] = "{
-                    'bg-success': data.status === 'อนุมัติ',
-                    'bg-danger': data.status === 'รออนุมัติ'
+                    'bg-success': data.status === 'APPROVED',
+                    'bg-danger': data.status === 'PENDING'
                 }">{{ data.status }}</span>
                 </td>
             </tr>

@@ -12,6 +12,8 @@ public class LeaveRequestModel {
     private LocalDate endDate;
     private String status;
     private String reason;
+    private String leaveTypeName;
+    private int UsedDays;
 
 
     public int getId() {
@@ -68,5 +70,21 @@ public class LeaveRequestModel {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getLeaveTypeName() {
+        return leaveTypeName;
+    }
+
+    public void setLeaveTypeName(String leaveTypeName) {
+        this.leaveTypeName = leaveTypeName;
+    }
+
+    public int getUsedDays() {
+        return UsedDays;
+    }
+
+    public void setUsedDays(int usedDays) {
+        UsedDays = usedDays;
     }
 }

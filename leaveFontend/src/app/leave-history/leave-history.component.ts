@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -11,8 +12,20 @@ import { Component } from '@angular/core';
   styleUrl: './leave-history.component.css'
 })
 export class LeaveHistoryComponent {
-  leaveHistory = [
-    {date: '5 ม.ค. 2568' , type: "ลาพักร้อน",day:10, status: "อนุมัติ"},
-    {date: '29 ก.ค. 2568' , type: "ลาป่วย",day:15, status: "อนุมัติ"}
-  ]
+  leaveHistory : any = []
+
+  constructor(private http: HttpClient){}
+
+  ngOnInit() {
+    this.http.get('http://localhost:8080/getAll')
+    .subscribe({
+      next: (response) => {
+          console.log("Save Suscess", response)
+          this.leaveHistory = response
+        }
+    })
+
+  }
+
+  
 }

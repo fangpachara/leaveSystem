@@ -20,7 +20,7 @@ public class LeaveSystemController {
         this.leaveAllService = leaveAllService;
     }
 
-    @PostMapping("/crateRequest")
+    @PostMapping("/crate-request")
     public ResponseEntity<LeaveRequestModel> createRequest(@RequestBody LeaveRequestModel model){
         return ResponseEntity.ok(leaveSystemService.createRequest(model));
     }

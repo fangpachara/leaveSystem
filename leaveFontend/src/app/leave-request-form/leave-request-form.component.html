@@ -7,10 +7,19 @@
     </div>
     <div>
         <p>ประเภทการลา</p>
+        <div class="col-md-6 mb-4">
+            <select class="form-control" [(ngModel)]="formData.userId">
+                <option value="">ผู้ขอลา</option>
+                <option *ngFor="let user of userId" [value]="user.id">
+                    {{ user.name }}
+                </option>
+            </select>
+
+        </div>
         <div class="col-mb-6">
-            <select class="form-control" [(ngModel)]="formData.leaveType">
+            <select class="form-control" [(ngModel)]="formData.leaveTypeId">
                 <option value="">เลือกประเภทการลา</option>
-                <option *ngFor="let type of leaveType" [value]="type.id">
+                <option *ngFor="let type of leaveTypeId" [value]="type.id">
                     {{ type.name }}
                 </option>
             </select>

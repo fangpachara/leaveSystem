@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -16,17 +17,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class LeaveRequestFormComponent {
 
-  leaveType = [
+  constructor(private http: HttpClient){}
+
+  leaveTypeId = [
     { id: 1, name: "ลาป่วย" },
-    { id: 2, name: "ลาพักร้อน" },
-    { id: 3, name: "ลากิจ" }
+    { id: 3, name: "ลาพักร้อน" },
+    { id: 2, name: "ลากิจ" }
+  ]
+
+  userId = [
+    { id: 1, name: "พชร ทีฆาวงค์"},
+    { id: 2, name: "แมลง วัน"},
   ]
 
   formData = {
-    leaveType: '',
+    leaveTypeId: '',
+    userId: '',
     startDate: '',
     endDate: '',
-    status: 'รออนุมัติ',
+    status: 'PENDING',
     reason: '',
     leaveDay: 0
   }
@@ -50,16 +59,23 @@ export class LeaveRequestFormComponent {
   }
 
   onSubmit() {
-    if (this.formData.leaveType || this.formData.startDate || this.formData.endDate || this.formData.reason) {
+    if (this.formData.leaveTypeId || this.formData.userId || this.formData.startDate || this.formData.endDate || this.formData.reason) {
       this.calLeaveDate()
-
       console.log("submitted", this.formData)
+      this.http.post('http://localhost:8080/crate-request', this.formData)
+      .subscribe({
+        next: (response) => {
+          console.log("Save Suscess", response)
+        }
+      })
+
     }
   }
 
   onClear() {
     this.formData = {
-      leaveType: '',
+      leaveTypeId: '',
+      userId: '',
       startDate: '',
       endDate: '',
       status: 'รออนุมัติ',

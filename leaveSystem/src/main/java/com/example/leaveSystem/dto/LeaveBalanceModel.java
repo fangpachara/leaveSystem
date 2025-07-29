@@ -8,6 +8,7 @@ public class LeaveBalanceModel {
     private int remainingDays;
     private int totalLeaveDays;
     private int usedDays;
+    private int totalRemaining;
 
     public int getId() {
         return Id;
@@ -63,5 +64,13 @@ public class LeaveBalanceModel {
 
     public void setUsedDays(int usedDays) {
         this.usedDays = usedDays;
+    }
+
+    public int getTotalRemaining() {
+        return totalRemaining;
+    }
+
+    public void setTotalRemaining(int totalRemaining) {
+        this.totalRemaining = totalRemaining;
     }
 }

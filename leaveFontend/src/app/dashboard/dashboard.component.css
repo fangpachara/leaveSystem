@@ -1,0 +1,7 @@
+.boxleave {
+    border-radius: 12px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+}

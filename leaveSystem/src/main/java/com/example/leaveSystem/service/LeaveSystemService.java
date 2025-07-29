@@ -51,7 +51,6 @@ public class LeaveSystemService {
         LeaveRequest saveRequest = leaveRequestRepository.save(leaveRequest);
         model.setId(saveRequest.getId());
         model.setStatus(saveRequest.getStatus());
-
         return model;
     }
 
@@ -112,14 +111,19 @@ public class LeaveSystemService {
 
         //รวมวันลาทั้งหมดของแต่ละคน
         for (LeaveBalanceModel i : result){
-            int total = 0;
+            int total = 0; //วันลารวม
+            int totalRemain = 0; //วันลาที่เหลือ
             for (LeaveBalanceModel j : result){
                 if(j.getUserId() == (i.getUserId())){
                     total += j.getUsedDays();
+                    totalRemain += j.getRemainingDays();
                 }
             }
             i.setTotalLeaveDays(total);
+            i.setTotalRemaining(totalRemain);
         }
+
+
 
     return result;
 
