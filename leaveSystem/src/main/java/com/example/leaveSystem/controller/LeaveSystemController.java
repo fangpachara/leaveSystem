@@ -2,6 +2,7 @@ package com.example.leaveSystem.controller;
 
 import com.example.leaveSystem.dto.LeaveBalanceModel;
 import com.example.leaveSystem.dto.LeaveRequestModel;
+import com.example.leaveSystem.dto.LeaveTypeSumModel;
 import com.example.leaveSystem.service.LeaveAllService;
 import com.example.leaveSystem.service.LeaveSystemService;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,10 @@ public class LeaveSystemController {
     @GetMapping("/GetBalances")
     public ResponseEntity<List<LeaveBalanceModel>> calRemainDays(){
         return ResponseEntity.ok(leaveSystemService.calRemainingDays());
+    }
+
+    @GetMapping("/get-leavetype-all")
+    public List<LeaveTypeSumModel> getLeaveType(){
+        return leaveSystemService.getLeaveType();
     }
 }

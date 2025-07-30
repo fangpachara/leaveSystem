@@ -32,4 +32,5 @@ export class AppComponent {
     this.changePage = 0;
   }
   title = 'leaveFontend';
+
 }

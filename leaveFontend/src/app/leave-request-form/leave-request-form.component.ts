@@ -3,7 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-
+interface list {
+  id: number;
+  leaveTypeName: string;
+  leaveTypeId: number;
+  remainingDays: number;
+  usedDays: number;
+  startDate: string;
+  endDate: string;
+  status: string;
+  totalRemaining: number;
+  totalLeaveDays: number;
+}
 @Component({
   selector: 'app-leave-request-form',
   standalone: true,
@@ -24,6 +35,11 @@ export class LeaveRequestFormComponent {
     { id: 3, name: "ลาพักร้อน" },
     { id: 2, name: "ลากิจ" }
   ]
+  leaveList: any = []
+  leaveHistory: any = []
+  pendingCount = 0;
+  totalRemaining: number = 0;
+  totalLeaveDays: number = 0;
 
 
   formData = {
@@ -62,6 +78,9 @@ export class LeaveRequestFormComponent {
       .subscribe({
         next: (response) => {
           console.log("Save Suscess", response)
+          alert("บันทึกข้อมูลสำเร็จ")
+          this.onClear();
+          this.getLeaveHistory();
         }
       })
 
@@ -78,5 +97,20 @@ export class LeaveRequestFormComponent {
       reason: '',
       leaveDay: 0
     }
+  }
+
+  ngOnInit() {
+    this.getLeaveHistory();
+  }
+  getLeaveHistory() {
+    this.http.get<list[]>('http://localhost:8080/getAll')
+      .subscribe({
+        next: (data) => {
+          this.leaveHistory = data.sort((b, a) => a.id - b.id); //เรียงจากล่าสุด
+          //นับ PENDING
+          this.pendingCount = this.leaveHistory.filter((item: any) => item.status === "PENDING").length;
+          console.log(data)
+        }
+      })
   }
 }

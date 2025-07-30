@@ -12,4 +12,5 @@ import java.util.List;
 public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Integer> {
     @Query("select i from LeaveRequest i where i.userId.Id = :userId and i.leaveTypeId.Id = :leaveTypeId") //ใช้เชื่อม userid กับ leavetypeid ถ้าไม่ใส่หาไม่เจอ
     List<LeaveRequest> findByUserIdAndLeaveTypeId(@Param("userId") int userId,@Param("leaveTypeId") int leaveTypeId);
+    List<LeaveRequest> findByStatus(String status);
 }

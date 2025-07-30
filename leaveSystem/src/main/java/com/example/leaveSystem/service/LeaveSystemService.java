@@ -2,6 +2,8 @@ package com.example.leaveSystem.service;
 
 import com.example.leaveSystem.dto.LeaveBalanceModel;
 import com.example.leaveSystem.dto.LeaveRequestModel;
+import com.example.leaveSystem.dto.LeaveTypeModel;
+import com.example.leaveSystem.dto.LeaveTypeSumModel;
 import com.example.leaveSystem.entity.LeaveBalance;
 import com.example.leaveSystem.entity.LeaveRequest;
 import com.example.leaveSystem.entity.LeaveType;
@@ -14,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LeaveSystemService {
@@ -126,11 +130,38 @@ public class LeaveSystemService {
             i.setTotalLeaveDays(total);
             i.setTotalRemaining(totalRemain);
         }
-
-
-
     return result;
+    }
 
+    //get ค่า leavetype แต่ละไอดี
+    public List<LeaveTypeSumModel> getLeaveType(){
+        List<LeaveRequest> leaveRequests = leaveRequestRepository.findByStatus("APPROVED");
+        Map<Integer, LeaveTypeSumModel> summary = new HashMap<>();
 
+        for (LeaveRequest request : leaveRequests){
+            Users user = request.getUserId();
+            LeaveType leaveType = request.getLeaveTypeId();
+            int days = (int)ChronoUnit.DAYS.between(request.getStartDate(), request.getEndDate()) +1;
+
+            LeaveTypeSumModel model = summary.computeIfAbsent(user.getId(), k -> {
+                LeaveTypeSumModel list = new LeaveTypeSumModel();
+                list.setFullName(user.getUserName());
+                list.setDepartment(user.getDepartment());
+                return list;
+            });
+
+            //บวกวันลาป่วย
+            switch (leaveType.getName()){
+                case "ลาป่วย" -> model.setSick(model.getSick() + days);
+                case "ลากิจ" -> model.setBusiness(model.getBusiness() + days);
+                case "ลาพักร้อน" -> model.setVacation(model.getVacation() + days);
+            }
+        }
+
+        for(LeaveTypeSumModel sum : summary.values()){
+            int total = sum.getSick() + sum.getBusiness() + sum.getVacation();
+            sum.setSumAll(total);
+        }
+        return new ArrayList<>(summary.values());
     }
 }
