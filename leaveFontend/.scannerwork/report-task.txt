@@ -1,0 +1,6 @@
+projectKey=leaveSystemFontend
+serverUrl=http://localhost:9000
+serverVersion=25.7.0.110598
+dashboardUrl=http://localhost:9000/dashboard?id=leaveSystemFontend
+ceTaskId=0ed1d042-9478-48b6-902b-0f76eb23151a
+ceTaskUrl=http://localhost:9000/api/ce/task?id=0ed1d042-9478-48b6-902b-0f76eb23151a

@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LeaveHistoryComponent } from './leave-history/leave-history.component';
 import { LeaveRequestFormComponent } from './leave-request-form/leave-request-form.component';
 import { SubmitApprovedComponent } from './submit-approved/submit-approved.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { SubmitApprovedComponent } from './submit-approved/submit-approved.compo
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  constructor(private router: Router) {}
   changePage = 0;
 
   toSubmit(){
@@ -32,5 +34,7 @@ export class AppComponent {
     this.changePage = 0;
   }
   title = 'leaveFontend';
-
+  toLogin() {
+    this.router.navigate(['/login-regis']);
+  }
 }

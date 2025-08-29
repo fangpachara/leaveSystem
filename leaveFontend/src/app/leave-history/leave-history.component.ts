@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { NgxEchartsModule } from 'ngx-echarts';
 
 @Component({
   selector: 'app-leave-history',

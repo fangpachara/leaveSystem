@@ -1,0 +1,55 @@
+.auth-container {
+  max-width: 350px;
+  margin: 40px auto;
+  padding: 24px 18px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  align-items: center;
+}
+.mode-switch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.mode-switch button {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.mode-switch button.active {
+  background: #007bff;
+  color: #fff;
+}
+.auth-form .form-group {
+  margin-bottom: 14px;
+}
+.form-control {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.btn {
+  padding: 8px 0;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+}
+.btn-success {
+  background: #28a745;
+  color: #fff;
+}
+.w-100 {
+  width: 100%;
+}

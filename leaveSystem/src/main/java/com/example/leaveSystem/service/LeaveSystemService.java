@@ -145,7 +145,7 @@ public class LeaveSystemService {
 
             LeaveTypeSumModel model = summary.computeIfAbsent(user.getId(), k -> {
                 LeaveTypeSumModel list = new LeaveTypeSumModel();
-                list.setFullName(user.getUserName());
+                list.setFullName(user.getUsername());
                 list.setDepartment(user.getDepartment());
                 return list;
             });
